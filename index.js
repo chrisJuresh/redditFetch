@@ -88,6 +88,23 @@ bot.on("message", async message => {
         }
     }
 
+    if(cmd == `${prefix}rm`){
+        if(message.channel.nsfw){
+            request("https://www.reddit.com/user/chaturbot/m/Top100female/.json?limit=100", function(error, response, body){
+                let msg = JSON.parse(body);
+                    try{
+                        let imgurl = msg["data"]["children"][Math.floor((Math.random() * 100) + 0)]["data"]["url"];
+                        return message.channel.send(imgurl + "\n*requested by " + message.author.tag + "*");
+                    }
+                    catch{
+                        return message.channel.send("Error getting data from the multireddit");
+                    }
+                });
+        } else {
+            return message.channel.send("Channel is not set nsfw");
+        }
+    }
+
     if(cmd == `${prefix}rh`){
         if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/hot/.json?limit=1" + args, function(error, response, body){
