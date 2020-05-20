@@ -15,6 +15,8 @@ This bot specialises in pulling images from reddit, either randomly or by the to
 
 `<rh` subreddit - *hot* 
 
+`<rm` - *random post from a nsfw multireddit*
+
 `<rr` subreddit - *rising*
 
 `<rt` subreddit - *top [of today]*
