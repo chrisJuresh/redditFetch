@@ -29,7 +29,7 @@ bot.on("message", async message => {
         .setColor(16711422)
         .setTitle("Commands")
         .setFooter("Contact Christian#7220 for any issues \n[menu requested by " + message.author.tag + "]")
-        .setDescription("*if **random** is not specified, then the top \n post of the category will be taken* \n\n `<r` subreddit - ***random*** \n\n `<rtt` subreddit - *top [of all time]* \n\n `<rh` subreddit - *hot* \n\n`<rm` - *random post from any sub*\n\n-------------------------------------------------\n\n `<rr` subreddit - *rising* \n\n `<rt` subreddit - *top [of today]* \n\n `<rn` subreddit - *new* \n\n `<rd` subreddit - ***random** [today] \n use this when <r is exhausted*\n\n `<rp` subreddit - *random [for sfw channels]* \n\n `<h` - *help* **or** `<hh` - *detailed*\n \u200B")
+        .setDescription("*if **random** is not specified, then the top \n post of the category will be taken* \n\n `<r` subreddit - ***random*** \n\n `<rtt` subreddit - *top [of all time]* \n\n `<rh` subreddit - *hot* \n\n`<rm` - ***random** post from a random subreddit*\n\n-------------------------------------------------\n\n `<rr` subreddit - *rising* \n\n `<rt` subreddit - *top [of today]* \n\n `<rn` subreddit - *new* \n\n `<rd` subreddit - ***random** [today] \n use this when <r is exhausted*\n\n `<rp` subreddit - *random [for sfw channels]* \n\n `<h` - *help* **or** `<hh` - *detailed*\n \u200B")
         message.channel.send({embed: sEmbed});
     }  
 
