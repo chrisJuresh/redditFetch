@@ -15,19 +15,21 @@ where **Random post** is not specified, the current top post of the category is 
 
 `<rm    :` **Random post** *[random subreddit]* 
 
-`<rh  ? :` Hot 
+`<rtt ? :` Top *[of all time]* 
+
+`<rt  ? :` Top *[of today]*
 
 `<rr  ? :` Rising 
 
-`<rt  ? :` Top *[of today]* 
+`<rh  ? :` Hot 
 
 `<rn  ? :` New 
+
+`<rp  ? :` **Random post** *[for sfw channels]*
 
 `<h     :` Help 
 
 `<hh    :` Detailed help 
-
-`<rp  ? :` **Random post** *[for sfw channels]*
 
 ## Dependencies:
 - discord.js

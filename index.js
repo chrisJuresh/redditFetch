@@ -33,15 +33,15 @@ bot.on("message", async message => {
             )
         .addField(
             "where **Random post** is not specified, the \ncurrent top post of the category is taken\n\u200b",
-            " `<r   ? :` **Random post** *[top 100 of all time]* \n `<rd  ? :` **Random post** *[top 100 of today]* \n `<rm    :` **Random post** *[random subreddit]* \n `<rtt ? :` Top *[of all time]* \n `<rh  ? :` Hot \n `<rr  ? :` Rising \n `<rt  ? :` Top *[of today]* \n `<rn  ? :` New \n\n `<h     :` Help \n `<hh    :` Detailed help \n\n ||`<rp  ? :` **Random post** *[for sfw channels]*|| ",        
+            " `<r   ? :` **Random post** *[top 100 of all time]* \n `<rd  ? :` **Random post** *[top 100 of today]* \n `<rm    :` **Random post** *[random subreddit]* \n `<rtt ? :` Top *[of all time]* \n `<rt  ? :` Top *[of today]*  \n `<rr  ? :` Rising \n`<rh  ? :` Hot \n `<rn  ? :` New \n\n `<h     :` Help \n `<hh    :` Detailed help \n\n ||`<rp  ? :` **Random post** *[for sfw channels]*|| ",        
             false)
         message.channel.send({embed: sEmbed});
     }  
 
     if(cmd == `${prefix}hh`){
         message.channel.send(
-            "```diff\n- COMMANDS DETAILED\n- this prompt was made to be viewed in fullscreen\n\n  <r\n+ pulls a random post from a list of the top 100 posts of all time\n\n  <rtt\n+ pulls the top post of all time\n\n  <rh\n+ pulls the top post of the 'hot' category\n\n  <rm\n+ pulls a random post from the top 100 posts of the 'hot' category from a multireddit\n\n  <rr\n+ pulls the top post of the 'rising' category\n\n  <rt\n+ pulls the top post of today\n\n  <rn\n+ pulls the top post of the 'new' category\n\n  <rd\n+ pulls a random post from a list of the top 100 posts of today\n+ this command is in case all or most <r posts have already been shown\n\n  <rp\n+ pulls a random image using random-puppy\n+ this command was added to work on sfw channels\n\n  <h\n+ pulls up a basic help post\n\n  <hh\n+ pulls up this detailed post to show the complete function and reasons for each command\"\n\n[menu requested by " + message.author.tag + "]\u200B```"
-            );
+            "```diff\n- COMMANDS DETAILED \n- this prompt was made to be viewed in fullscreen \n \n  <r \n+ pulls a random post from a list of the top 100 posts of all time \n \n  <rd \n+ pulls a random post from a list of the top 100 posts of today \n+ this command is in case all or most <r posts have already been shown \n \n  <rm \n+ pulls a random post from the top 100 posts of the 'hot' category from a multireddit \n \n  <rtt \n+ pulls the top post of all time \n \n  <rt \n+ pulls the top post of today \n \n  <rr \n+ pulls the top post of the 'rising' category \n \n  <rh \n+ pulls the top post of the 'hot' category \n \n  <rn \n+ pulls the top post of the 'new' category \n \n  <rp \n+ pulls a random image using random-puppy \n+ this command was added to work on sfw channels \n \n  <h \n+ pulls up a basic help post \n \n  <hh \n+ pulls up this detailed post to show the complete function and reasons for each command\" \n \n[menu requested by " + message.author.tag + "]\u200B```"
+        );
     }  
 
     if(cmd == `${prefix}r`){
