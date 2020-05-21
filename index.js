@@ -28,13 +28,20 @@ bot.on("message", async message => {
         let sEmbed = new Discord.RichEmbed()
         .setColor(16711422)
         .setTitle("Commands")
-        .setFooter("Contact Christian#7220 for any issues \n[menu requested by " + message.author.tag + "]")
-        .setDescription("*if **random** is not specified, then the top \n post of the category will be taken* \n\n `<r` subreddit - ***random*** \n\n `<rtt` subreddit - *top [of all time]* \n\n `<rh` subreddit - *hot* \n\n`<rm` - ***random** post from a random subreddit*\n\n-------------------------------------------------\n\n `<rr` subreddit - *rising* \n\n `<rt` subreddit - *top [of today]* \n\n `<rn` subreddit - *new* \n\n `<rd` subreddit - ***random** [today] \n use this when <r is exhausted*\n\n `<rp` subreddit - *random [for sfw channels]* \n\n `<h` - *help* **or** `<hh` - *detailed*\n \u200B")
+        .setFooter(
+            "Contact Christian#7220 for any issues \n[menu requested by " + message.author.tag + "]"
+            )
+        .addField(
+            "where **Random post** is not specified, the \ncurrent top post of the category is taken\n\u200b",
+            " `<r   ? :` **Random post** *[top 100 of all time]* \n `<rd  ? :` **Random post** *[top 100 of today]* \n `<rm    :` **Random post** *[random subreddit]* \n `<rtt ? :` Top *[of all time]* \n `<rh  ? :` Hot \n `<rr  ? :` Rising \n `<rt  ? :` Top *[of today]* \n `<rn  ? :` New \n\n `<h     :` Help \n `<hh    :` Detailed help \n\n ||`<rp  ? :` **Random post** *[for sfw channels]*|| ",        
+            false)
         message.channel.send({embed: sEmbed});
     }  
 
     if(cmd == `${prefix}hh`){
-        message.channel.send("```Commands detailed\n    this prompt was made to be viewed in fullscreen\n\n<r - pulls a random post from a list of the top 100 posts of all time\n\n<rtt - pulls the top post of all time\n\n<rh - pulls the top post of the hot category\n\n<rm - pulls a random post from the top 100 posts of the hot category from a multireddit<rr - pulls the top post of the rising category\n\n<rt - pulls the top post of today\n\n<rn - pulls a random post from a list of the top 100 posts of today\n      this command is in case all or most <r posts have already been shown\n\n<rp - pulls a random image using random-puppy\n      this command was added to work on sfw channels\n\n<h - pulls up a basic help post\n\n<hh - pulls up this detailed post to show the complete function and reasons for each command\n\n[menu requested by " + message.author.tag + "]\u200B```");
+        message.channel.send(
+            "```diff\n- COMMANDS DETAILED\n- this prompt was made to be viewed in fullscreen\n\n  <r\n+ pulls a random post from a list of the top 100 posts of all time\n\n  <rtt\n+ pulls the top post of all time\n\n  <rh\n+ pulls the top post of the 'hot' category\n\n  <rm\n+ pulls a random post from the top 100 posts of the 'hot' category from a multireddit\n\n  <rr\n+ pulls the top post of the 'rising' category\n\n  <rt\n+ pulls the top post of today\n\n  <rn\n+ pulls the top post of the 'new' category\n\n  <rd\n+ pulls a random post from a list of the top 100 posts of today\n+ this command is in case all or most <r posts have already been shown\n\n  <rp\n+ pulls a random image using random-puppy\n+ this command was added to work on sfw channels\n\n  <h\n+ pulls up a basic help post\n\n  <hh\n+ pulls up this detailed post to show the complete function and reasons for each command\"\n\n[menu requested by " + message.author.tag + "]\u200B```"
+            );
     }  
 
     if(cmd == `${prefix}r`){
@@ -94,7 +101,7 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"][Math.floor((Math.random() * 100) + 0)]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrm ***[randommulti]** requested by **" + message.author.tag + "***");
+                        return message.channel.send(imgurl + "\nrm ***[a random post from a random subreddit]** requested by **" + message.author.tag + "***\n");
                     }
                     catch{
                         return message.channel.send("Error getting data from the multireddit");
@@ -186,4 +193,3 @@ bot.on("message", async message => {
 });
 
 bot.login(config.token);
-

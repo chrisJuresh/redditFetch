@@ -7,26 +7,27 @@
 
 This bot specialises in pulling images from reddit, either randomly or by the top post of a given category. Below is a list of the commands. If you would like to see more detail add the bot to your server and use <hh. If anyone needs help setting up the bot themselves feel free to contact me. Feel free to put forward any improvments to the code or formatting of README
 
-*if **random** is not specified, then the top post of the category will be taken* 
+where **Random post** is not specified, the current top post of the category is taken
 
-`<r` subreddit - ***random*** 
+`<r   ? :` **Random post** *[top 100 of all time]* 
 
-`<rtt` subreddit - *top [of all time]* 
+`<rd  ? :` **Random post** *[top 100 of today]* 
 
-`<rh` subreddit - *hot* 
+`<rm    :` **Random post** *[random subreddit]* 
 
-`<rm` - ***random** post from a random subreddit*
+`<rh  ? :` Hot 
 
-`<rr` subreddit - *rising*
+`<rr  ? :` Rising 
 
-`<rt` subreddit - *top [of today]*
+`<rt  ? :` Top *[of today]* 
 
-`<rn` subreddit - *new* `<rd` subreddit - ***random** [today] use this when <r is exhausted* 
+`<rn  ? :` New 
 
-`<rp` subreddit - *random [for sfw channels]*
+`<h     :` Help 
 
-`<h` - *help* **or** 
-`<hh` - *detailed*
+`<hh    :` Detailed help 
+
+`<rp  ? :` **Random post** *[for sfw channels]*
 
 ## Dependencies:
 - discord.js

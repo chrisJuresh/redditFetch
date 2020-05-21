@@ -6,6 +6,7 @@
   "dependencies": {
     "discord.js": "^11.6.4",
     "forever": "^2.0.0",
+    "node": "^14.2.0",
     "nodemon": "^2.0.4",
     "random-puppy": "^1.1.0",
     "request": "^2.88.2",
