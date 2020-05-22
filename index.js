@@ -33,14 +33,14 @@ bot.on("message", async message => {
             )
         .addField(
             "where **Random post** is not specified, the \ncurrent top post of the category is taken\n\u200b",
-            " `<r   ? :` **Random post** *[top 100 of all time]* \n `<rd  ? :` **Random post** *[top 100 of today]* \n `<rm    :` **Random post** *[random subreddit]* \n `<rtt ? :` Top *[of all time]* \n `<rt  ? :` Top *[of today]*  \n `<rr  ? :` Rising \n`<rh  ? :` Hot \n `<rn  ? :` New \n\n `<h     :` Help \n `<hh    :` Detailed help \n\n ||`<rp  ? :` **Random post** *[for sfw channels]*|| ",        
+            " `<r   ? :` **Random post** *[top 100 of all time]* \n `<rd  ? :` **Random post** *[top 100 of today]* \n `<rm    :` **Random post** *[random subreddit]* \n `<rtt ? :` Top *[of all time]* \n `<rt  ? :` Top *[of today]* \n`<rh  ? :` Hot\n`<rr  ? :` Rising\n `<rn  ? :` New \n\n `<h     :` Help \n `<hh    :` Detailed help \n\n ||`<rp  ? :` **Random post** *[for sfw channels]*|| ",        
             false)
         message.channel.send({embed: sEmbed});
     }  
 
     if(cmd == `${prefix}hh`){
         message.channel.send(
-            "```diff\n- COMMANDS DETAILED \n- this prompt was made to be viewed in fullscreen \n \n  <r \n+ pulls a random post from a list of the top 100 posts of all time \n \n  <rd \n+ pulls a random post from a list of the top 100 posts of today \n+ this command is in case all or most <r posts have already been shown \n \n  <rm \n+ pulls a random post from the top 100 posts of the 'hot' category from a multireddit \n \n  <rtt \n+ pulls the top post of all time \n \n  <rt \n+ pulls the top post of today \n \n  <rr \n+ pulls the top post of the 'rising' category \n \n  <rh \n+ pulls the top post of the 'hot' category \n \n  <rn \n+ pulls the top post of the 'new' category \n \n  <rp \n+ pulls a random image using random-puppy \n+ this command was added to work on sfw channels \n \n  <h \n+ pulls up a basic help post \n \n  <hh \n+ pulls up this detailed post to show the complete function and reasons for each command\" \n \n[menu requested by " + message.author.tag + "]\u200B```"
+            "```diff\n- COMMANDS DETAILED \n- this prompt was made to be viewed in fullscreen \n \n  <r \n+ pulls a random post from a list of the top 100 posts of all time \n \n  <rd \n+ pulls a random post from a list of the top 100 posts of today \n+ this command is in case all or most <r posts have already been shown \n \n  <rm \n+ pulls a random post from the top 100 posts of the 'hot' category from a multireddit \n \n  <rtt \n+ pulls the top post of all time \n \n  <rt \n+ pulls the top post of today \n \n  <rh \n+ pulls the top post of the 'hot' category \n \n  <rr \n+ pulls the top post of the 'rising' category \n \n  <rn \n+ pulls the top post of the 'new' category \n \n  <rp \n+ pulls a random image using random-puppy \n+ this command was added to work on sfw channels \n \n  <h \n+ pulls up a basic help post \n \n  <hh \n+ pulls up this detailed post to show the complete function and reasons for each command\" \n \n[menu requested by " + message.author.tag + "]\u200B```"
         );
     }  
 
@@ -50,7 +50,7 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"][Math.floor((Math.random() * 100) + 0)]["data"]["url"];
-                        return message.channel.send(imgurl + "\nr ***" + args + "** requested by **" + message.author.tag + "***");
+                        return message.channel.send(imgurl + "\nr **" + args + "** requested by **" + message.author.tag + "**");
                     }
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -67,7 +67,7 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"][Math.floor((Math.random() * 100) + 0)]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrd ***" + args + "** requested by **" + message.author.tag + "***");
+                        return message.channel.send(imgurl + "\nrd **" + args + "** requested by **" + message.author.tag + "**");
                     }
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -84,7 +84,7 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrtt ***" + args + "** requested by **" + message.author.tag + "***");
+                        return message.channel.send(imgurl + "\nrtt **" + args + "** requested by **" + message.author.tag + "**");
                     }
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -100,8 +100,10 @@ bot.on("message", async message => {
             request("https://www.reddit.com/user/chaturbot/m/Top100female/.json?limit=100", function(error, response, body){
                 let msg = JSON.parse(body);
                     try{
-                        let imgurl = msg["data"]["children"][Math.floor((Math.random() * 100) + 0)]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrm ***[a random post from a random subreddit]** requested by **" + message.author.tag + "***\n");
+                        let randnum = Math.floor((Math.random() * 100) + 0)
+                        let imgurl = msg["data"]["children"][randnum]["data"]["url"];
+                        let subreddit = msg["data"]["children"][randnum]["data"]["subreddit"]
+                        return message.channel.send(imgurl + "\nrm **" + subreddit + "** requested by **" + message.author.tag + "**\n*the rm command picks a subreddit at random*");
                     }
                     catch{
                         return message.channel.send("Error getting data from the multireddit");
@@ -118,7 +120,7 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrh ***" + args + "** requested by **" + message.author.tag + "***");
+                        return message.channel.send(imgurl + "\nrh **" + args + "** requested by **" + message.author.tag + "**");
                     }
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -135,7 +137,7 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrt ***" + args + "** requested by **" + message.author.tag + "***");
+                        return message.channel.send(imgurl + "\nrt **" + args + "** requested by **" + message.author.tag + "**");
                     }
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -152,7 +154,7 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrr ***" + args + "** requested by **" + message.author.tag + "***");
+                        return message.channel.send(imgurl + "\nrr **" + args + "** requested by **" + message.author.tag + "**");
                     }
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -169,7 +171,7 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrn ***" + args + "** requested by **" + message.author.tag + "***");
+                        return message.channel.send(imgurl + "\nrn **" + args + "** requested by **" + message.author.tag + "**");
                     }
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -183,7 +185,7 @@ bot.on("message", async message => {
     if(cmd == `${prefix}rp`){
     try {
         rp(args).then(url=> {                
-            message.channel.send(url + "\nrp ***" + args + "** requested by **" + message.author.tag + "***");
+            message.channel.send(url + "\nrp **" + args + "** requested by **" + message.author.tag + "**");
             });
     } 
     catch{

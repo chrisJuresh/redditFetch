@@ -19,9 +19,9 @@ where **Random post** is not specified, the current top post of the category is 
 
 `<rt  ? :` Top *[of today]*
 
-`<rr  ? :` Rising 
-
 `<rh  ? :` Hot 
+
+`<rr  ? :` Rising 
 
 `<rn  ? :` New 
 
