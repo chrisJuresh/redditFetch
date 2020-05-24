@@ -41,7 +41,7 @@ bot.on("message", async message => {
     if(cmd == `${prefix}hh`){
         message.channel.send(
             "```diff\n- COMMANDS DETAILED \n- this prompt was made to be viewed in fullscreen \n \n  <r \n+ pulls a random post from a list of the top 100 posts of all time \n \n  <rd \n+ pulls a random post from a list of the top 100 posts of today \n+ this command is in case all or most <r posts have already been shown \n \n  <rm \n+ pulls a random post from the top 100 posts of the 'hot' category from a multireddit \n \n  <rtt \n+ pulls the top post of all time \n \n  <rt \n+ pulls the top post of today \n \n  <rh \n+ pulls the top post of the 'hot' category \n \n  <rr \n+ pulls the top post of the 'rising' category \n \n  <rn \n+ pulls the top post of the 'new' category \n \n  <rp \n+ pulls a random image using random-puppy \n+ this command was added to work on sfw channels \n \n  <h \n+ pulls up a basic help post \n \n  <hh \n+ pulls up this detailed post to show the complete function and reasons for each command\" \n \n[menu requested by " + message.author.tag + "]\u200B```"
-        );
+            );
     }  
 
     if(cmd == `${prefix}r`){
@@ -50,8 +50,10 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"][Math.floor((Math.random() * 100) + 0)]["data"]["url"];
-                        return message.channel.send(imgurl + "\nr **" + args + "** requested by **" + message.author.tag + "**");
-                    }
+                        if (imgurl.includes('gfycat')) {
+                            return message.channel.send(imgurl + "\nr **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord does not support most gfycat links but you can still click it!*");
+                        } else {
+                            return message.channel.send(imgurl + "\nr **" + args + "** requested by **" + message.author.tag + "**");}}                        
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
                     }
@@ -67,8 +69,10 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"][Math.floor((Math.random() * 100) + 0)]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrd **" + args + "** requested by **" + message.author.tag + "**");
-                    }
+                        if (imgurl.includes('gfycat')) {
+                            return message.channel.send(imgurl + "\nrd **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord does not support most gfycat links but you can still click it!*");
+                        } else {
+                            return message.channel.send(imgurl + "\nrd **" + args + "** requested by **" + message.author.tag + "**");}}                        
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
                     }
@@ -84,8 +88,10 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrtt **" + args + "** requested by **" + message.author.tag + "**");
-                    }
+                        if (imgurl.includes('gfycat')) {
+                            return message.channel.send(imgurl + "\nrtt **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord does not support most gfycat links but you can still click it!*");
+                    }else {
+                        return message.channel.send(imgurl + "\nrtt **" + args + "** requested by **" + message.author.tag + "**");}}                        
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
                     }
@@ -103,8 +109,10 @@ bot.on("message", async message => {
                         let randnum = Math.floor((Math.random() * 100) + 0)
                         let imgurl = msg["data"]["children"][randnum]["data"]["url"];
                         let subreddit = msg["data"]["children"][randnum]["data"]["subreddit"]
-                        return message.channel.send(imgurl + "\nrm **" + subreddit + "** requested by **" + message.author.tag + "**\n*the rm command picks a subreddit at random*");
-                    }
+                        if (imgurl.includes('gfycat')) {
+                            return message.channel.send(imgurl + "\nrm **" + subreddit + "** requested by **" + message.author.tag + "**\n*the rm command picks a subreddit at random*" + "\n***can't see the post?** - discord does not support most gfycat links but you can still click it!*");
+                    }else {
+                        return message.channel.send(imgurl + "\nrm **" + subreddit + "** requested by **" + message.author.tag + "**\n");}}
                     catch{
                         return message.channel.send("Error getting data from the multireddit");
                     }
@@ -120,8 +128,10 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrh **" + args + "** requested by **" + message.author.tag + "**");
-                    }
+                        if (imgurl.includes('gfycat')) {
+                            return message.channel.send(imgurl + "\nrh **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord does not support most gfycat links but you can still click it!*");
+                    } else {
+                        return message.channel.send(imgurl + "\nrh **" + args + "** requested by **" + message.author.tag + "**");}}
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
                     }
@@ -137,8 +147,10 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrt **" + args + "** requested by **" + message.author.tag + "**");
-                    }
+                        if (imgurl.includes('gfycat')) {
+                            return message.channel.send(imgurl + "\nrt **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord does not support most gfycat links but you can still click it!*");
+                        } else {
+                            return message.channel.send(imgurl + "\nrt **" + args + "** requested by **" + message.author.tag + "**");}}
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
                     }
@@ -154,8 +166,10 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrr **" + args + "** requested by **" + message.author.tag + "**");
-                    }
+                        if (imgurl.includes('gfycat')) {
+                            return message.channel.send(imgurl + "\nrr **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord does not support most gfycat links but you can still click it!*");
+                        } else {
+                            return message.channel.send(imgurl + "\nrr **" + args + "** requested by **" + message.author.tag + "**");}}
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
                     }
@@ -171,8 +185,10 @@ bot.on("message", async message => {
                 let msg = JSON.parse(body);
                     try{
                         let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        return message.channel.send(imgurl + "\nrn **" + args + "** requested by **" + message.author.tag + "**");
-                    }
+                        if (imgurl.includes('gfycat')) {
+                            return message.channel.send(imgurl + "\nrn **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord does not support most gfycat links but you can still click it!*");
+                        } else {
+                            return message.channel.send(imgurl + "\nrn **" + args + "** requested by **" + message.author.tag + "**");}}
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
                     }
