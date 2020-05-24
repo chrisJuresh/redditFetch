@@ -59,7 +59,7 @@ bot.on("message", async message => {
                     }
                 });
         } else {
-            return message.channel.send("Channel is not set nsfw");
+            return message.channel.send("This channel is not set to nsfw. Please use <rp");
         }
     }
 
@@ -78,7 +78,7 @@ bot.on("message", async message => {
                     }
                 });
         } else {
-            return message.channel.send("Channel is not set nsfw");
+            return message.channel.send("This channel is not set to nsfw. Please use <rp");
         }
     }
 
@@ -97,7 +97,7 @@ bot.on("message", async message => {
                     }
                 });
         } else {
-            return message.channel.send("Channel is not set nsfw");
+            return message.channel.send("This channel is not set to nsfw. Please use <rp");
         }
     }
 
@@ -118,7 +118,7 @@ bot.on("message", async message => {
                     }
                 });
         } else {
-            return message.channel.send("Channel is not set nsfw");
+            return message.channel.send("This channel is not set to nsfw. Please use <rp");
         }
     }
 
@@ -137,7 +137,7 @@ bot.on("message", async message => {
                     }
                 });
         } else {
-            return message.channel.send("Channel is not set nsfw");
+            return message.channel.send("This channel is not set to nsfw. Please use <rp");
         }
     }  
     
@@ -156,7 +156,7 @@ bot.on("message", async message => {
                     }
                 });
         } else {
-            return message.channel.send("Channel is not set nsfw");
+            return message.channel.send("This channel is not set to nsfw. Please use <rp");
         }
     }
 
@@ -175,7 +175,7 @@ bot.on("message", async message => {
                     }
                 });
         } else {
-            return message.channel.send("Channel is not set nsfw");
+            return message.channel.send("This channel is not set to nsfw. Please use <rp");
         }
     }
     
@@ -194,7 +194,7 @@ bot.on("message", async message => {
                     }
                 });
         } else {
-            return message.channel.send("Channel is not set nsfw");
+            return message.channel.send("This channel is not set to nsfw. Please use <rp");
         }
     }
     
