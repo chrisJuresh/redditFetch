@@ -7,6 +7,8 @@
 
 This bot specialises in pulling images from reddit, either randomly or by the top post of a given category. Below is a list of the commands. If you would like to see more detail add the bot to your server and use <hh. If anyone needs help setting up the bot themselves feel free to contact me. Feel free to put forward any improvments to the code or formatting of README
 
+  Rename `example-botconfig.json` to `botconfig.json` and add your token into the file.
+
 where **Random post** is not specified, the current top post of the category is taken
 
 `<r   ? :` **Random post** *[top 100 of all time]* 
@@ -30,6 +32,8 @@ where **Random post** is not specified, the current top post of the category is 
 `<h     :` Help 
 
 `<hh    :` Detailed help 
+
+**[Click here](https://discordapp.com/oauth2/authorize?client_id=439778986050977792&scope=bot&permissions=8)** *to add this bot to your own server*
 
 ## Dependencies:
 - discord.js
