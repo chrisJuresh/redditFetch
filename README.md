@@ -33,7 +33,7 @@ where **Random post** is not specified, the current top post of the category is 
 
 `<hh    :` Detailed help 
 
-**[Click here](https://discordapp.com/oauth2/authorize?client_id=439778986050977792&scope=bot&permissions=8)** *to add this bot to your own server*
+**[Click here](https://discord.com/api/oauth2/authorize?client_id=711764918898262058&permissions=8&scope=bot)** *to add this bot to your own server*
 
 ## Dependencies:
 - discord.js
