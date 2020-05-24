@@ -35,6 +35,8 @@ where **Random post** is not specified, the current top post of the category is 
 
 **[Click here](https://discord.com/api/oauth2/authorize?client_id=711764918898262058&permissions=8&scope=bot)** *to add this bot to your own server*
 
+**[Donate](https://www.patreon.com/join/blockySigma/checkout)**
+
 ## Dependencies:
 - discord.js
 - request
