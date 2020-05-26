@@ -53,13 +53,33 @@ bot.on("message", async message => {
     if(cmd == `${prefix}r`){
         if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/top/.json?t=all&limit=100", function(error, response, body){
-                let msg = JSON.parse(body);
+                let json = JSON.parse(body);
                     try{
-                        let imgurl = msg["data"]["children"][Math.floor((Math.random() * 100) + 0)]["data"]["url"];
+                        let randnum = Math.floor((Math.random() * 100) + 0)
+                        let imgurl = json["data"]["children"][randnum]["data"]["url"];
+                        let title = json["data"]["children"][randnum]["data"]["title"];
+                        let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
                         if (imgurl.includes('gfycat')) {
-                            return message.channel.send(">>> " + imgurl + "\nr **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord doesn't support most gfycat links but you can still click it!*");
+                            let reEmbed = new Discord.RichEmbed()
+                            .setColor(16711422)
+                            .addField(
+                                "r **" + args + "** requested by **" + message.author.tag + "**",
+                                "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                                )
+                            .setFooter(
+                                "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
+                            message.channel.send({ embed: reEmbed }).then((message) =>
+                            message.channel.send(imgurl))
                         } else {
-                            return message.channel.send(">>> " + imgurl + "\nr **" + args + "** requested by **" + message.author.tag + "**");}}                        
+                            let reEmbed = new Discord.RichEmbed()
+                            .setColor(16711422)
+                            .addField(
+                                "r **" + args + "** requested by **" + message.author.tag + "**",
+                                "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                                )
+                            message.channel.send({ embed: reEmbed }).then((message) =>
+                            message.channel.send(imgurl))
+                    }}                        
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
                     }
@@ -72,32 +92,71 @@ bot.on("message", async message => {
     if(cmd == `${prefix}rd`){
         if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/top/.json?t=day&limit=100", function(error, response, body){
-                let msg = JSON.parse(body);
+                let json = JSON.parse(body);
                     try{
-                        let imgurl = msg["data"]["children"][Math.floor((Math.random() * 100) + 0)]["data"]["url"];
-                        if (imgurl.includes('gfycat')) {
-                            return message.channel.send(">>> " + imgurl + "\nrd **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord doesn't support most gfycat links but you can still click it!*");
-                        } else {
-                            return message.channel.send(">>> " + imgurl + "\nrd **" + args + "** requested by **" + message.author.tag + "**");}}                        
-                    catch{
-                        return message.channel.send("Error getting data from the subreddit - **" + args + "**");
-                    }
-                });
-        } else {
-            return message.channel.send("This channel is not set to nsfw. Please use <rp");
-        }
+                    let randnum = Math.floor((Math.random() * 100) + 0)
+                    let imgurl = json["data"]["children"][randnum]["data"]["url"];
+                    let title = json["data"]["children"][randnum]["data"]["title"];
+                    let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
+                    if (imgurl.includes('gfycat')) {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rd **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        .setFooter(
+                            "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rd **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                }}                        
+                catch{
+                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                }
+            });
+    } else {
+        return message.channel.send("This channel is not set to nsfw. Please use <rp");
     }
+}
 
     if(cmd == `${prefix}rtt`){
         if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/top/.json?t=all&limit=1", function(error, response, body){
-                let msg = JSON.parse(body);
+                let json = JSON.parse(body);
                     try{
-                        let imgurl = msg["data"]["children"]["0"]["data"]["url"];
+                        let imgurl = json["data"]["children"]["0"]["data"]["url"];
+                        let title = json["data"]["children"]["0"]["data"]["title"];
+                        let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
                         if (imgurl.includes('gfycat')) {
-                            return message.channel.send(">>> " + imgurl + "\nrtt **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord doesn't support most gfycat links but you can still click it!*");
+                            let reEmbed = new Discord.RichEmbed()
+                            .setColor(16711422)
+                            .addField(
+                                "rtt **" + args + "** requested by **" + message.author.tag + "**",
+                                "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                                )
+                            .setFooter(
+                                "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
+                            message.channel.send({ embed: reEmbed }).then((message) =>
+                            message.channel.send(imgurl))
                         } else {
-                            return message.channel.send(">>> " + imgurl + "\nrtt **" + args + "** requested by **" + message.author.tag + "**");}}                        
+                            let reEmbed = new Discord.RichEmbed()
+                            .setColor(16711422)
+                            .addField(
+                                "rtt **" + args + "** requested by **" + message.author.tag + "**",
+                                "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                                )
+                            message.channel.send({ embed: reEmbed }).then((message) =>
+                            message.channel.send(imgurl))
+                    }}                        
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
                     }
@@ -110,15 +169,36 @@ bot.on("message", async message => {
     if(cmd == `${prefix}rm`){
         if(message.channel.nsfw){
             request("https://www.reddit.com/user/chaturbot/m/Top100female/.json?limit=100", function(error, response, body){
-                let msg = JSON.parse(body);
+                let json = JSON.parse(body);
                     try{
                         let randnum = Math.floor((Math.random() * 100) + 0)
-                        let imgurl = msg["data"]["children"][randnum]["data"]["url"];
-                        let subreddit = msg["data"]["children"][randnum]["data"]["subreddit"]
+                        let imgurl = json["data"]["children"][randnum]["data"]["url"];
+                        let subreddit = json["data"]["children"][randnum]["data"]["subreddit"]
+                        let title = json["data"]["children"][randnum]["data"]["title"];
+                        let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
                         if (imgurl.includes('gfycat')) {
-                            return message.channel.send(">>> " + imgurl + "\nrm **" + subreddit + "** requested by **" + message.author.tag + "**\n*the rm command picks a subreddit at random*" + "\n***can't see the post?** - discord doesn't support most gfycat links but you can still click it!*");
+                            let reEmbed = new Discord.RichEmbed()
+                            .setColor(16711422)
+                            .addField(
+                                "rm **" + subreddit + "** requested by **" + message.author.tag + "**",
+                                "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                                )
+                            .setFooter(
+                                "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!\n⚠️ The <rm command picks a subreddit at random. Try <h if you would like to specify one");
+                            message.channel.send({ embed: reEmbed }).then((message) =>
+                            message.channel.send(imgurl))                        
                         } else {
-                            return message.channel.send(">>> " + imgurl + "\nrm **" + subreddit + "** requested by **" + message.author.tag + "**\n");}}
+                            let reEmbed = new Discord.RichEmbed()
+                            .setColor(16711422)
+                            .addField(
+                                "rm **" + subreddit + "** requested by **" + message.author.tag + "**",
+                                "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                                )
+                            .setFooter(
+                                "⚠️ The <rm command picks a subreddit at random. Try <h if you would like to specify one");
+                            message.channel.send({ embed: reEmbed }).then((message) =>
+                            message.channel.send(imgurl))
+                        }}
                     catch{
                         return message.channel.send("Error getting data from the multireddit");
                     }
@@ -128,81 +208,157 @@ bot.on("message", async message => {
         }
     }
 
-    if(cmd == `${prefix}rh`){
-        if(message.channel.nsfw){
-            request("https://www.reddit.com/r/" + args + "/hot/.json?limit=1" + args, function(error, response, body){
-                let msg = JSON.parse(body);
-                    try{
-                        let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        if (imgurl.includes('gfycat')) {
-                            return message.channel.send(">>> " + imgurl + "\nrh **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord doesn't support most gfycat links but you can still click it!*");
-                        } else {
-                            return message.channel.send(">>> " + imgurl + "\nrh **" + args + "** requested by **" + message.author.tag + "**");}}
-                    catch{
-                        return message.channel.send("Error getting data from the subreddit - **" + args + "**");
-                    }
-                });
-        } else {
-            return message.channel.send("This channel is not set to nsfw. Please use <rp");
-        }
-    }  
-    
     if(cmd == `${prefix}rt`){
         if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/top/.json?limit=1" + args, function(error, response, body){
-                let msg = JSON.parse(body);
-                    try{
-                        let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        if (imgurl.includes('gfycat')) {
-                            return message.channel.send(">>> " + imgurl + "\nrt **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord doesn't support most gfycat links but you can still click it!*");
-                        } else {
-                            return message.channel.send(">>> " + imgurl + "\nrt **" + args + "** requested by **" + message.author.tag + "**");}}
-                    catch{
-                        return message.channel.send("Error getting data from the subreddit - **" + args + "**");
-                    }
-                });
-        } else {
-            return message.channel.send("This channel is not set to nsfw. Please use <rp");
-        }
+                let json = JSON.parse(body);
+                try{
+                    let imgurl = json["data"]["children"]["0"]["data"]["url"];
+                    let title = json["data"]["children"]["0"]["data"]["title"];
+                    let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
+                    if (imgurl.includes('gfycat')) {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rt **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        .setFooter(
+                            "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rt **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                }}                        
+                catch{
+                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                }
+            });
+    } else {
+        return message.channel.send("This channel is not set to nsfw. Please use <rp");
     }
+}
+
+    if(cmd == `${prefix}rh`){
+        if(message.channel.nsfw){
+            request("https://www.reddit.com/r/" + args + "/hot/.json?limit=1" + args, function(error, response, body){
+                let json = JSON.parse(body);
+                try{
+                    let imgurl = json["data"]["children"]["0"]["data"]["url"];
+                    let title = json["data"]["children"]["0"]["data"]["title"];
+                    let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
+                    if (imgurl.includes('gfycat')) {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rh **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        .setFooter(
+                            "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rh **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                }}                        
+                catch{
+                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                }
+            });
+    } else {
+        return message.channel.send("This channel is not set to nsfw. Please use <rp");
+    }
+}
 
     if(cmd == `${prefix}rr`){
         if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/rising/.json?limit=1" + args, function(error, response, body){
-                let msg = JSON.parse(body);
-                    try{
-                        let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        if (imgurl.includes('gfycat')) {
-                            return message.channel.send(">>> " + imgurl + "\nrr **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord doesn't support most gfycat links but you can still click it!*");
-                        } else {
-                            return message.channel.send(">>> " + imgurl + "\nrr **" + args + "** requested by **" + message.author.tag + "**");}}
-                    catch{
-                        return message.channel.send("Error getting data from the subreddit - **" + args + "**");
-                    }
-                });
-        } else {
-            return message.channel.send("This channel is not set to nsfw. Please use <rp");
-        }
+                let json = JSON.parse(body);
+                try{
+                    let imgurl = json["data"]["children"]["0"]["data"]["url"];
+                    let title = json["data"]["children"]["0"]["data"]["title"];
+                    let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
+                    if (imgurl.includes('gfycat')) {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rr **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        .setFooter(
+                            "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rr **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                }}                        
+                catch{
+                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                }
+            });
+    } else {
+        return message.channel.send("This channel is not set to nsfw. Please use <rp");
     }
+}
     
     if(cmd == `${prefix}rn`){
         if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/new/.json?limit=1" + args, function(error, response, body){
-                let msg = JSON.parse(body);
-                    try{
-                        let imgurl = msg["data"]["children"]["0"]["data"]["url"];
-                        if (imgurl.includes('gfycat')) {
-                            return message.channel.send(">>> " + imgurl + "\nrn **" + args + "** requested by **" + message.author.tag + "**" + "\n***can't see the post?** - discord doesn't support most gfycat links but you can still click it!*");
-                        } else {
-                            return message.channel.send(">>> " + imgurl + "\nrn **" + args + "** requested by **" + message.author.tag + "**");}}
-                    catch{
-                        return message.channel.send("Error getting data from the subreddit - **" + args + "**");
-                    }
-                });
-        } else {
-            return message.channel.send("This channel is not set to nsfw. Please use <rp");
-        }
+                let json = JSON.parse(body);
+                try{
+                    let imgurl = json["data"]["children"]["0"]["data"]["url"];
+                    let title = json["data"]["children"]["0"]["data"]["title"];
+                    let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
+                    if (imgurl.includes('gfycat')) {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rn **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        .setFooter(
+                            "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .addField(
+                            "rn **" + args + "** requested by **" + message.author.tag + "**",
+                            "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+                            )
+                        message.channel.send({ embed: reEmbed }).then((message) =>
+                        message.channel.send(imgurl))
+                }}                        
+                catch{
+                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                }
+            });
+    } else {
+        return message.channel.send("This channel is not set to nsfw. Please use <rp");
     }
+}
     
     if(cmd == `${prefix}rp`){
     try {
