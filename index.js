@@ -68,8 +68,8 @@ bot.on("message", async message => {
                                 )
                             .setFooter(
                                 "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-                            message.channel.send({ embed: reEmbed }).then((message) =>
-                            message.channel.send(imgurl))
+                            message.channel.send({ embed: reEmbed })
+                            return message.channel.send(imgurl)
                         } else {
                             let reEmbed = new Discord.RichEmbed()
                             .setColor(16711422)
@@ -77,8 +77,8 @@ bot.on("message", async message => {
                                 "r **" + args + "** requested by **" + message.author.tag + "**",
                                 "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                                 )
-                            message.channel.send({ embed: reEmbed }).then((message) =>
-                            message.channel.send(imgurl))
+                            message.channel.send({ embed: reEmbed })
+                            return message.channel.send(imgurl)
                     }}                        
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -107,8 +107,8 @@ bot.on("message", async message => {
                             )
                         .setFooter(
                             "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                     } else {
                         let reEmbed = new Discord.RichEmbed()
                         .setColor(16711422)
@@ -116,8 +116,8 @@ bot.on("message", async message => {
                             "rd **" + args + "** requested by **" + message.author.tag + "**",
                             "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                             )
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                 }}                        
                 catch{
                     return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -145,8 +145,8 @@ bot.on("message", async message => {
                                 )
                             .setFooter(
                                 "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-                            message.channel.send({ embed: reEmbed }).then((message) =>
-                            message.channel.send(imgurl))
+                            message.channel.send({ embed: reEmbed })
+                            return message.channel.send(imgurl)
                         } else {
                             let reEmbed = new Discord.RichEmbed()
                             .setColor(16711422)
@@ -154,8 +154,8 @@ bot.on("message", async message => {
                                 "rtt **" + args + "** requested by **" + message.author.tag + "**",
                                 "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                                 )
-                            message.channel.send({ embed: reEmbed }).then((message) =>
-                            message.channel.send(imgurl))
+                            message.channel.send({ embed: reEmbed })
+                            return message.channel.send(imgurl)
                     }}                        
                     catch{
                         return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -185,8 +185,8 @@ bot.on("message", async message => {
                                 )
                             .setFooter(
                                 "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!\n⚠️ The <rm command picks a subreddit at random. Try <h if you would like to specify one");
-                            message.channel.send({ embed: reEmbed }).then((message) =>
-                            message.channel.send(imgurl))                        
+                            message.channel.send({ embed: reEmbed })
+                            return message.channel.send(imgurl)                        
                         } else {
                             let reEmbed = new Discord.RichEmbed()
                             .setColor(16711422)
@@ -196,8 +196,8 @@ bot.on("message", async message => {
                                 )
                             .setFooter(
                                 "⚠️ The <rm command picks a subreddit at random. Try <h if you would like to specify one");
-                            message.channel.send({ embed: reEmbed }).then((message) =>
-                            message.channel.send(imgurl))
+                            message.channel.send({ embed: reEmbed })
+                            return message.channel.send(imgurl)
                         }}
                     catch{
                         return message.channel.send("Error getting data from the multireddit");
@@ -225,8 +225,8 @@ bot.on("message", async message => {
                             )
                         .setFooter(
                             "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                     } else {
                         let reEmbed = new Discord.RichEmbed()
                         .setColor(16711422)
@@ -234,8 +234,8 @@ bot.on("message", async message => {
                             "rt **" + args + "** requested by **" + message.author.tag + "**",
                             "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                             )
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                 }}                        
                 catch{
                     return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -263,8 +263,8 @@ bot.on("message", async message => {
                             )
                         .setFooter(
                             "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                     } else {
                         let reEmbed = new Discord.RichEmbed()
                         .setColor(16711422)
@@ -272,8 +272,8 @@ bot.on("message", async message => {
                             "rh **" + args + "** requested by **" + message.author.tag + "**",
                             "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                             )
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                 }}                        
                 catch{
                     return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -301,8 +301,8 @@ bot.on("message", async message => {
                             )
                         .setFooter(
                             "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                     } else {
                         let reEmbed = new Discord.RichEmbed()
                         .setColor(16711422)
@@ -310,8 +310,8 @@ bot.on("message", async message => {
                             "rr **" + args + "** requested by **" + message.author.tag + "**",
                             "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                             )
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                 }}                        
                 catch{
                     return message.channel.send("Error getting data from the subreddit - **" + args + "**");
@@ -339,8 +339,8 @@ bot.on("message", async message => {
                             )
                         .setFooter(
                             "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                     } else {
                         let reEmbed = new Discord.RichEmbed()
                         .setColor(16711422)
@@ -348,8 +348,8 @@ bot.on("message", async message => {
                             "rn **" + args + "** requested by **" + message.author.tag + "**",
                             "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                             )
-                        message.channel.send({ embed: reEmbed }).then((message) =>
-                        message.channel.send(imgurl))
+                        message.channel.send({ embed: reEmbed })
+                        return message.channel.send(imgurl)
                 }}                        
                 catch{
                     return message.channel.send("Error getting data from the subreddit - **" + args + "**");
