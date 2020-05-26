@@ -51,7 +51,6 @@ bot.on("message", async message => {
     }  
 
     if(cmd == `${prefix}r`){
-        if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/top/.json?t=all&limit=100", function(error, response, body){
                 let json = JSON.parse(body);
                     try{
@@ -67,7 +66,7 @@ bot.on("message", async message => {
                                 "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                                 )
                             .setFooter(
-                                "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
+                                "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!\n⚠️ To avoid gfycat don't use <r or <rtt ");
                             message.channel.send({ embed: reEmbed })
                             return message.channel.send(imgurl)
                         } else {
@@ -81,16 +80,32 @@ bot.on("message", async message => {
                             return message.channel.send(imgurl)
                     }}                        
                     catch{
-                        return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                        if (args === void(0)) {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .setTitle(
+                            "⚠️ You must specify a subreddit!"
+                        )
+                        .setDescription(
+                            "Use `<rm` if you would like to pull from a random subreddit"
+                            )
+                        return message.channel.send({ embed: reEmbed })
+                        } else {
+                            let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .setTitle(
+                            "⚠️ Error getting data from " + args
+                        )
+                        .setDescription(
+                            "Either this subreddit doesn't exist, or it has less than 100 posts in it"
+                            )
+                        return message.channel.send({ embed: reEmbed })
+                        };                 
                     }
                 });
-        } else {
-            return message.channel.send("This channel is not set to nsfw. Please use <rp");
-        }
     }
 
     if(cmd == `${prefix}rd`){
-        if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/top/.json?t=day&limit=100", function(error, response, body){
                 let json = JSON.parse(body);
                     try{
@@ -120,16 +135,33 @@ bot.on("message", async message => {
                         return message.channel.send(imgurl)
                 }}                        
                 catch{
-                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                    if (args === void(0)) {
+                    let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ You must specify a subreddit!"
+                    )
+                    .setDescription(
+                        "Use `<rm` if you would like to pull from a random subreddit"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ Error getting data from " + args
+                    )
+                    .setDescription(
+                        "Either this subreddit doesn't exist, or it has had less than 100 posts posted in it today"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    };                 
                 }
             });
-    } else {
-        return message.channel.send("This channel is not set to nsfw. Please use <rp");
-    }
 }
 
+
     if(cmd == `${prefix}rtt`){
-        if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/top/.json?t=all&limit=1", function(error, response, body){
                 let json = JSON.parse(body);
                     try{
@@ -144,7 +176,7 @@ bot.on("message", async message => {
                                 "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                                 )
                             .setFooter(
-                                "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
+                                "⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!\n⚠️ To avoid gfycat don't use <r or <rtt ");
                             message.channel.send({ embed: reEmbed })
                             return message.channel.send(imgurl)
                         } else {
@@ -158,13 +190,31 @@ bot.on("message", async message => {
                             return message.channel.send(imgurl)
                     }}                        
                     catch{
-                        return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                        if (args === void(0)) {
+                        let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .setTitle(
+                            "⚠️ You must specify a subreddit!"
+                        )
+                        .setDescription(
+                            "Use `<rm` if you would like to pull from a random subreddit"
+                            )
+                        return message.channel.send({ embed: reEmbed })
+                        } else {
+                            let reEmbed = new Discord.RichEmbed()
+                        .setColor(16711422)
+                        .setTitle(
+                            "⚠️ Error getting data from " + args
+                        )
+                        .setDescription(
+                            "Either this subreddit doesn't exist, or it might be empty"
+                            )
+                        return message.channel.send({ embed: reEmbed })
+                        };                 
                     }
                 });
-        } else {
-            return message.channel.send("This channel is not set to nsfw. Please use <rp");
-        }
     }
+
 
     if(cmd == `${prefix}rm`){
         if(message.channel.nsfw){
@@ -199,17 +249,24 @@ bot.on("message", async message => {
                             message.channel.send({ embed: reEmbed })
                             return message.channel.send(imgurl)
                         }}
-                    catch{
-                        return message.channel.send("Error getting data from the multireddit");
-                    }
-                });
+                        catch{
+                                let reEmbed = new Discord.RichEmbed()
+                            .setColor(16711422)
+                            .setTitle(
+                                "⚠️ Error getting data from the multireddit"
+                            )
+                            .setDescription(
+                                "Please contact Christian#7220"
+                                )
+                            return message.channel.send({ embed: reEmbed })
+                        }
+                    });
         } else {
-            return message.channel.send("This channel is not set to nsfw. Please use <rp");
+            return message.channel.send("This is a risky command! Please set this channel to nsfw or use a different command");
         }
     }
 
     if(cmd == `${prefix}rt`){
-        if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/top/.json?limit=1" + args, function(error, response, body){
                 let json = JSON.parse(body);
                 try{
@@ -238,16 +295,33 @@ bot.on("message", async message => {
                         return message.channel.send(imgurl)
                 }}                        
                 catch{
-                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                    if (args === void(0)) {
+                    let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ You must specify a subreddit!"
+                    )
+                    .setDescription(
+                        "Use `<rm` if you would like to pull from a random subreddit"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ Error getting data from " + args
+                    )
+                    .setDescription(
+                        "Either this subreddit doesn't exist, or it doesn't have any new posts today"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    };                 
                 }
             });
-    } else {
-        return message.channel.send("This channel is not set to nsfw. Please use <rp");
-    }
 }
 
+
     if(cmd == `${prefix}rh`){
-        if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/hot/.json?limit=1" + args, function(error, response, body){
                 let json = JSON.parse(body);
                 try{
@@ -276,16 +350,32 @@ bot.on("message", async message => {
                         return message.channel.send(imgurl)
                 }}                        
                 catch{
-                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                    if (args === void(0)) {
+                    let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ You must specify a subreddit!"
+                    )
+                    .setDescription(
+                        "Use `<rm` if you would like to pull from a random subreddit"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ Error getting data from " + args
+                    )
+                    .setDescription(
+                        "Either this subreddit doesn't exist, or it doesn't have any hot posts"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    };                 
                 }
             });
-    } else {
-        return message.channel.send("This channel is not set to nsfw. Please use <rp");
-    }
 }
 
     if(cmd == `${prefix}rr`){
-        if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/rising/.json?limit=1" + args, function(error, response, body){
                 let json = JSON.parse(body);
                 try{
@@ -314,16 +404,32 @@ bot.on("message", async message => {
                         return message.channel.send(imgurl)
                 }}                        
                 catch{
-                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                    if (args === void(0)) {
+                    let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ You must specify a subreddit!"
+                    )
+                    .setDescription(
+                        "Use `<rm` if you would like to pull from a random subreddit"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ Error getting data from " + args
+                    )
+                    .setDescription(
+                        "Either this subreddit doesn't exist, or it doesn't have any rising posts"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    };                 
                 }
             });
-    } else {
-        return message.channel.send("This channel is not set to nsfw. Please use <rp");
-    }
 }
     
     if(cmd == `${prefix}rn`){
-        if(message.channel.nsfw){
             request("https://www.reddit.com/r/" + args + "/new/.json?limit=1" + args, function(error, response, body){
                 let json = JSON.parse(body);
                 try{
@@ -352,18 +458,64 @@ bot.on("message", async message => {
                         return message.channel.send(imgurl)
                 }}                        
                 catch{
-                    return message.channel.send("Error getting data from the subreddit - **" + args + "**");
+                    if (args === void(0)) {
+                    let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ You must specify a subreddit!"
+                    )
+                    .setDescription(
+                        "Use `<rm` if you would like to pull from a random subreddit"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    } else {
+                        let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "⚠️ Error getting data from " + args
+                    )
+                    .setDescription(
+                        "Either this subreddit doesn't exist, or it doesn't have any new posts"
+                        )
+                    return message.channel.send({ embed: reEmbed })
+                    };                 
                 }
             });
-    } else {
-        return message.channel.send("This channel is not set to nsfw. Please use <rp");
-    }
 }
-    
     if(cmd == `${prefix}rp`){
     try {
         rp(args).then(url=> {                
-            message.channel.send(">>> " + url + "\nrp **" + args + "** requested by **" + message.author.tag + "**");
+            if (url === void(0)) {         
+                let reEmbed = new Discord.RichEmbed()
+                .setColor(16711422)
+                .setTitle(
+                    "⚠️ Error"
+                )
+                .setDescription(
+                    "Either this subreddit doesn't exist, or it doesn't have any posts"
+                )
+                return message.channel.send({ embed: reEmbed })
+            } else {
+                if (args === void(0)) {     
+                let reEmbed = new Discord.RichEmbed()
+                .setColor(16711422)
+                .setTitle(
+                    "rp **puppy** requested by **" + message.author.tag + "**"                    
+                    )
+                .setFooter(
+                    "You did not specify a subreddit so puppies will be shown");
+                message.channel.send({ embed: reEmbed })
+                return message.channel.send(url)                
+            } else {
+                    let reEmbed = new Discord.RichEmbed()
+                    .setColor(16711422)
+                    .setTitle(
+                        "rp **" + args + "** requested by **" + message.author.tag + "**"                    
+                        )
+                    message.channel.send({ embed: reEmbed })
+                    return message.channel.send(url)  
+            }
+        };            
             });
     } 
     catch{
