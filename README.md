@@ -13,7 +13,7 @@ where **Random post** is not specified, the current top post of the category is 
 
 `<r   ? :` **Random post** *[top 100 of all time]* 
 
-`<rd  ? :` **Random post** *[top 100 of today]* 
+`<rtm  ? :` **Random post** *[top 100 of this month]* 
 
 `<rm    :` **Random post** *[random subreddit]* 
 

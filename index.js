@@ -25,7 +25,7 @@ bot.on("message", async message => {
     let args = messageArray[1];
     
     //if(cmd == `${prefix}q`){
-    //var role = message.guild.roles.find(role => role.name === "Artificial Intelligence");
+    //var role = message.guild.roles.find(role => role.name === "redditFetch");
     //message.member.removeRole(role);
     //message.guild.roles.find(role => role.name === "x").delete();
     //}
@@ -39,14 +39,14 @@ bot.on("message", async message => {
             )
         .addField(
             "where **Random post** is not specified, the \ncurrent top post of the category is taken\n\u200b",
-            " `<r   ? :` **Random post** *[top 100 of all time]* \n `<rd  ? :` **Random post** *[top 100 of today]* \n `<rm    :` **Random post** *[random subreddit]* \n `<rtt ? :` Top *[of all time]* \n `<rt  ? :` Top *[of today]* \n`<rh  ? :` Hot\n`<rr  ? :` Rising\n `<rn  ? :` New \n\n `<h     :` Help \n `<hh    :` Detailed help \n\n||`<rp  ? :` **Random post** *[for sfw channels]*||\n\n**[Click here](https://discord.com/api/oauth2/authorize?client_id=711764918898262058&permissions=8&scope=bot)** *to add this bot to your own server*\n**[Donate](https://www.patreon.com/join/blockySigma/checkout)**",        
+            " `<r   ? :` **Random post** *[top 100 of all time]* \n `<rtm  ? :` **Random post** *[top 100 of this month]* \n `<rm    :` **Random post** *[random subreddit]* \n `<rtt ? :` Top *[of all time]* \n `<rt  ? :` Top *[of today]* \n`<rh  ? :` Hot\n`<rr  ? :` Rising\n `<rn  ? :` New \n\n `<h     :` Help \n `<hh    :` Detailed help \n\n||`<rp  ? :` **Random post** *[for sfw channels]*||\n\n**[Click here](https://discord.com/api/oauth2/authorize?client_id=711764918898262058&permissions=8&scope=bot)** *to add this bot to your own server*\n**[Donate](https://www.patreon.com/join/blockySigma/checkout)**",        
             false)
         message.channel.send({embed: sEmbed});
     }  
 
     if(cmd == `${prefix}hh`){
         message.channel.send(
-            "```diff\n- COMMANDS DETAILED \n- this prompt was made to be viewed in fullscreen \n \n  <r \n+ pulls a random post from a list of the top 100 posts of all time \n \n  <rd \n+ pulls a random post from a list of the top 100 posts of today \n+ this command is in case all or most <r posts have already been shown \n \n  <rm \n+ pulls a random post from the top 100 posts of the 'hot' category from a multireddit \n \n  <rtt \n+ pulls the top post of all time \n \n  <rt \n+ pulls the top post of today \n \n  <rh \n+ pulls the top post of the 'hot' category \n \n  <rr \n+ pulls the top post of the 'rising' category \n \n  <rn \n+ pulls the top post of the 'new' category \n \n  <rp \n+ pulls a random image using random-puppy \n+ this command was added to work on sfw channels \n \n  <h \n+ pulls up a basic help post \n \n  <hh \n+ pulls up this detailed post to show the complete function and reasons for each command\" \n\nadd this bot with https://discord.com/api/oauth2/authorize?client_id=711764918898262058&permissions=8&scope=bot \n\ndonate with https://www.patreon.com/join/blockySigma/checkout\n \n[menu requested by " + message.author.tag + "]\u200B```"
+            "```diff\n- COMMANDS DETAILED \n- this prompt was made to be viewed in fullscreen \n \n  <r \n+ pulls a random post from a list of the top 100 posts of all time \n \n  <rtm \n+ pulls a random post from a list of the top 100 posts of this month \n+ this command is in case all or most <r posts have already been shown \n \n  <rm \n+ pulls a random post from the top 100 posts of the 'hot' category from a multireddit \n \n  <rtt \n+ pulls the top post of all time \n \n  <rt \n+ pulls the top post of today \n \n  <rh \n+ pulls the top post of the 'hot' category \n \n  <rr \n+ pulls the top post of the 'rising' category \n \n  <rn \n+ pulls the top post of the 'new' category \n \n  <rp \n+ pulls a random image using random-puppy \n+ this command was added to work on sfw channels \n \n  <h \n+ pulls up a basic help post \n \n  <hh \n+ pulls up this detailed post to show the complete function and reasons for each command\" \n\nadd this bot with https://discord.com/api/oauth2/authorize?client_id=711764918898262058&permissions=8&scope=bot \n\ndonate with https://www.patreon.com/join/blockySigma/checkout\n \n[menu requested by " + message.author.tag + "]\u200B```"
             );
     }  
 
@@ -105,8 +105,8 @@ bot.on("message", async message => {
                 });
     }
 
-    if(cmd == `${prefix}rd`){
-            request("https://www.reddit.com/r/" + args + "/top/.json?t=day&limit=100", function(error, response, body){
+    if(cmd == `${prefix}rtm`){
+            request("https://www.reddit.com/r/" + args + "/top/.json?t=month&limit=100", function(error, response, body){
                 let json = JSON.parse(body);
                     try{
                     let randnum = Math.floor((Math.random() * 100) + 0)
@@ -117,7 +117,7 @@ bot.on("message", async message => {
                         let reEmbed = new Discord.RichEmbed()
                         .setColor(16711422)
                         .addField(
-                            "rd **" + args + "** requested by **" + message.author.tag + "**",
+                            "rtm **" + args + "** requested by **" + message.author.tag + "**",
                             "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                             )
                         .setFooter(
@@ -128,7 +128,7 @@ bot.on("message", async message => {
                         let reEmbed = new Discord.RichEmbed()
                         .setColor(16711422)
                         .addField(
-                            "rd **" + args + "** requested by **" + message.author.tag + "**",
+                            "rtm **" + args + "** requested by **" + message.author.tag + "**",
                             "[" + title + "](" + "https://reddit.com" + redditlink + ")", true
                             )
                         message.channel.send({ embed: reEmbed })
@@ -152,7 +152,7 @@ bot.on("message", async message => {
                         "⚠️ Error getting data from " + args
                     )
                     .setDescription(
-                        "Either this subreddit doesn't exist, or it has had less than 100 posts posted in it today"
+                        "Either this subreddit doesn't exist, or it has had less than 100 posts posted in it this month"
                         )
                     return message.channel.send({ embed: reEmbed })
                     };                 
