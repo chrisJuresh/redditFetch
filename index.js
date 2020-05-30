@@ -119,19 +119,8 @@ bot.on("message", async message => {
 				let imgurl = json["data"]["children"][randnum]["data"]["url"];
 				let title = json["data"]["children"][randnum]["data"]["title"];
 				let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
-				if (imgurl.includes('gfycat')) {
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"r **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-						.setFooter(
-							"⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!" +
-							"\n⚠️ To avoid gfycat pick a different command from <h and avoid <r and <rtt ");
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				} else {
+				request(imgurl, function (err, response, body) {
+					let finalurl = response.request.href
 					let reEmbed = new Discord.RichEmbed()
 						.setColor(16711422)
 						.addField(
@@ -139,8 +128,8 @@ bot.on("message", async message => {
 							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
 						);
 					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				}
+					return message.channel.send(finalurl);
+				});
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -175,18 +164,8 @@ bot.on("message", async message => {
 				let imgurl = json["data"]["children"][randnum]["data"]["url"];
 				let title = json["data"]["children"][randnum]["data"]["title"];
 				let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
-				if (imgurl.includes('gfycat')) {
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rtm **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-						.setFooter(
-							"⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				} else {
+				request(imgurl, function (err, response, body) {
+					let finalurl = response.request.href
 					let reEmbed = new Discord.RichEmbed()
 						.setColor(16711422)
 						.addField(
@@ -194,8 +173,8 @@ bot.on("message", async message => {
 							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
 						)
 					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				}
+					return message.channel.send(finalurl);
+				});
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -235,19 +214,8 @@ bot.on("message", async message => {
 				let imgurl = json["data"]["children"]["0"]["data"]["url"];
 				let title = json["data"]["children"]["0"]["data"]["title"];
 				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				if (imgurl.includes('gfycat')) {
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rtt **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-						.setFooter(
-							"⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!" +
-							"\n⚠️ To avoid gfycat pick a different command from <h and avoid <r and <rtt ");
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				} else {
+				request(imgurl, function (err, response, body) {
+					let finalurl = response.request.href
 					let reEmbed = new Discord.RichEmbed()
 						.setColor(16711422)
 						.addField(
@@ -255,8 +223,8 @@ bot.on("message", async message => {
 							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
 						)
 					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				}
+					return message.channel.send(finalurl);
+				});
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -294,19 +262,8 @@ bot.on("message", async message => {
 					let subreddit = json["data"]["children"][randnum]["data"]["subreddit"]
 					let title = json["data"]["children"][randnum]["data"]["title"];
 					let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
-					if (imgurl.includes('gfycat')) {
-						let reEmbed = new Discord.RichEmbed()
-							.setColor(16711422)
-							.addField(
-								"rm **" + subreddit + "** requested by **" + message.author.tag + "**",
-								"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-							)
-							.setFooter(
-								"⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!" +
-								"\n⚠️ The <rm command picks a subreddit at random. Try <h if you would like to specify one");
-						message.channel.send({embed: reEmbed})
-						return message.channel.send(imgurl)
-					} else {
+					request(imgurl, function (err, response, body) {
+						let finalurl = response.request.href
 						let reEmbed = new Discord.RichEmbed()
 							.setColor(16711422)
 							.addField(
@@ -315,9 +272,9 @@ bot.on("message", async message => {
 							)
 							.setFooter(
 								"⚠️ The <rm command picks a subreddit at random. Try <h if you would like to specify one");
-						message.channel.send({embed: reEmbed})
-						return message.channel.send(imgurl)
-					}
+						message.channel.send({embed: reEmbed});
+						return message.channel.send(finalurl);
+					});
 				} catch {
 					let reEmbed = new Discord.RichEmbed()
 						.setColor(16711422)
@@ -342,18 +299,8 @@ bot.on("message", async message => {
 				let imgurl = json["data"]["children"]["0"]["data"]["url"];
 				let title = json["data"]["children"]["0"]["data"]["title"];
 				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				if (imgurl.includes('gfycat')) {
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rt **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-						.setFooter(
-							"⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				} else {
+				request(imgurl, function (err, response, body) {
+					let finalurl = response.request.href
 					let reEmbed = new Discord.RichEmbed()
 						.setColor(16711422)
 						.addField(
@@ -361,8 +308,8 @@ bot.on("message", async message => {
 							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
 						)
 					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				}
+					return message.channel.send(finalurl);
+				});
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -397,18 +344,8 @@ bot.on("message", async message => {
 				let imgurl = json["data"]["children"]["0"]["data"]["url"];
 				let title = json["data"]["children"]["0"]["data"]["title"];
 				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				if (imgurl.includes('gfycat')) {
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rh **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-						.setFooter(
-							"⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				} else {
+				request(imgurl, function (err, response, body) {
+					let finalurl = response.request.href
 					let reEmbed = new Discord.RichEmbed()
 						.setColor(16711422)
 						.addField(
@@ -416,8 +353,8 @@ bot.on("message", async message => {
 							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
 						)
 					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				}
+					return message.channel.send(finalurl);
+				});
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -451,18 +388,8 @@ bot.on("message", async message => {
 				let imgurl = json["data"]["children"]["0"]["data"]["url"];
 				let title = json["data"]["children"]["0"]["data"]["title"];
 				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				if (imgurl.includes('gfycat')) {
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rr **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-						.setFooter(
-							"⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				} else {
+				request(imgurl, function (err, response, body) {
+					let finalurl = response.request.href
 					let reEmbed = new Discord.RichEmbed()
 						.setColor(16711422)
 						.addField(
@@ -470,8 +397,8 @@ bot.on("message", async message => {
 							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
 						)
 					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				}
+					return message.channel.send(finalurl);
+				});
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -505,18 +432,8 @@ bot.on("message", async message => {
 				let imgurl = json["data"]["children"]["0"]["data"]["url"];
 				let title = json["data"]["children"]["0"]["data"]["title"];
 				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				if (imgurl.includes('gfycat')) {
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rn **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-						.setFooter(
-							"⚠️ Can't see the post? - Discord doesn't support most gfycat links but you can still click it!");
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				} else {
+				request(imgurl, function (err, response, body) {
+					let finalurl = response.request.href
 					let reEmbed = new Discord.RichEmbed()
 						.setColor(16711422)
 						.addField(
@@ -524,8 +441,8 @@ bot.on("message", async message => {
 							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
 						)
 					message.channel.send({embed: reEmbed});
-					return message.channel.send(imgurl);
-				}
+					return message.channel.send(finalurl);
+				});
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -573,7 +490,7 @@ bot.on("message", async message => {
 							)
 							.setFooter(
 								"You did not specify a subreddit so puppies will be shown");
-						message.channel.send({embed: reEmbed})
+						message.channel.send({embed: reEmbed});
 						return message.channel.send(url)
 					} else {
 						let reEmbed = new Discord.RichEmbed()
@@ -581,7 +498,7 @@ bot.on("message", async message => {
 							.setTitle(
 								"rp **" + args + "** requested by **" + message.author.tag + "**"
 							)
-						message.channel.send({embed: reEmbed})
+						message.channel.send({embed: reEmbed});
 						return message.channel.send(url)
 					}
 				};
