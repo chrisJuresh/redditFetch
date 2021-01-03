@@ -1,3 +1,5 @@
+"use strict";
+
 const config = require("./botconfig.json");
 const Discord = require("discord.js");
 const request = require("request");
@@ -23,6 +25,7 @@ bot.on("message", async message => {
 	let messageArray = message.content.split(" ");
 	let cmd = messageArray[0];
 	let args = messageArray[1];
+	let Nargs = messageArray[2];
 
 	//if(cmd == `${prefix}q`){
 	//var role = message.guild.roles.find(role => role.name === "redditFetch");
@@ -115,21 +118,27 @@ bot.on("message", async message => {
 		request("https://www.reddit.com/r/" + args + "/top/.json?t=all&limit=100", function (error, response, body) {
 			let json = JSON.parse(body);
 			try {
-				let randnum = Math.floor((Math.random() * 100) + 0);
-				let imgurl = json["data"]["children"][randnum]["data"]["url"];
-				let title = json["data"]["children"][randnum]["data"]["title"];
-				let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
-				request(imgurl, function (err, response, body) {
-					let finalurl = response.request.href
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"r **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						);
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(finalurl);
-				});
+				if (isNaN(Nargs)) {
+					Nargs = 1
+				}
+				const maxReps = Math.min(Number(Nargs), 10);
+				for (let i = 0; i < Number(maxReps); i++) {
+					let randnum = Math.floor((Math.random() * 100) + 0);
+					let imgurl = json["data"]["children"][randnum]["data"]["url"];
+					let title = json["data"]["children"][randnum]["data"]["title"];
+					let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
+					request(imgurl, function (err, response, body) {
+						let finalurl = response.request.href
+						let reEmbed = new Discord.RichEmbed()
+							.setColor(16711422)
+							.addField(
+								"r **" + args + "** requested by **" + message.author.tag + " x" + maxReps + "**",
+								"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+							);
+						message.channel.send({embed: reEmbed});
+						return message.channel.send(finalurl);
+					});
+				}
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -160,21 +169,27 @@ bot.on("message", async message => {
 		request("https://www.reddit.com/r/" + args + "/top/.json?t=month&limit=100", function (error, response, body) {
 			let json = JSON.parse(body);
 			try {
-				let randnum = Math.floor((Math.random() * 100) + 0);
-				let imgurl = json["data"]["children"][randnum]["data"]["url"];
-				let title = json["data"]["children"][randnum]["data"]["title"];
-				let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
-				request(imgurl, function (err, response, body) {
-					let finalurl = response.request.href
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rtm **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(finalurl);
-				});
+				if (isNaN(Nargs)) {
+					Nargs = 1
+				}
+				const maxReps = Math.min(Number(Nargs), 10);
+				for (let i = 0; i < Number(maxReps); i++) {
+					let randnum = Math.floor((Math.random() * 100) + 0);
+					let imgurl = json["data"]["children"][randnum]["data"]["url"];
+					let title = json["data"]["children"][randnum]["data"]["title"];
+					let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
+					request(imgurl, function (err, response, body) {
+						let finalurl = response.request.href
+						let reEmbed = new Discord.RichEmbed()
+							.setColor(16711422)
+							.addField(
+								"rtm **" + args + "** requested by **" + message.author.tag + " x" + maxReps + "**",
+								"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+							)
+						message.channel.send({embed: reEmbed});
+						return message.channel.send(finalurl);
+					});
+				}
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -201,7 +216,6 @@ bot.on("message", async message => {
 		});
 	}
 
-
 	if (cmd == `${prefix}rtt`) {
 		var options = {
 			followRedirect: true,
@@ -211,20 +225,26 @@ bot.on("message", async message => {
 		request("https://www.reddit.com/r/" + args + "/top/.json?t=all&limit=1", options, function (err, response, body) {
 			let json = JSON.parse(body);
 			try {
-				let imgurl = json["data"]["children"]["0"]["data"]["url"];
-				let title = json["data"]["children"]["0"]["data"]["title"];
-				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				request(imgurl, function (err, response, body) {
-					let finalurl = response.request.href
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rtt **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(finalurl);
-				});
+				if (isNaN(Nargs)) {
+					Nargs = 1
+				}
+				const maxReps = Math.min(Number(Nargs), 10);
+				for (let i = 0; i < Number(maxReps); i++) {
+					let imgurl = json["data"]["children"]["0"]["data"]["url"];
+					let title = json["data"]["children"]["0"]["data"]["title"];
+					let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
+					request(imgurl, function (err, response, body) {
+						let finalurl = response.request.href
+						let reEmbed = new Discord.RichEmbed()
+							.setColor(16711422)
+							.addField(
+								"rtt **" + args + "** requested by **" + message.author.tag + " x" + maxReps + "**",
+								"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+							)
+						message.channel.send({embed: reEmbed});
+						return message.channel.send(finalurl);
+					});
+				}
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -251,30 +271,37 @@ bot.on("message", async message => {
 		});
 	}
 
-
 	if (cmd == `${prefix}rm`) {
 		if (message.channel.nsfw) {
 			request("https://www.reddit.com/user/chaturbot/m/Top100female/.json?limit=100", function (error, response, body) {
 				let json = JSON.parse(body);
 				try {
-					let randnum = Math.floor((Math.random() * 100) + 0)
-					let imgurl = json["data"]["children"][randnum]["data"]["url"];
-					let subreddit = json["data"]["children"][randnum]["data"]["subreddit"]
-					let title = json["data"]["children"][randnum]["data"]["title"];
-					let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
-					request(imgurl, function (err, response, body) {
-						let finalurl = response.request.href
-						let reEmbed = new Discord.RichEmbed()
-							.setColor(16711422)
-							.addField(
-								"rm **" + subreddit + "** requested by **" + message.author.tag + "**",
-								"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-							)
-							.setFooter(
-								"⚠️ The <rm command picks a subreddit at random. Try <h if you would like to specify one");
-						message.channel.send({embed: reEmbed});
-						return message.channel.send(finalurl);
-					});
+					if (isNaN(Nargs)) {
+						Nargs = 1
+					}
+					const maxReps = Math.min(Number(Nargs), 10);
+					for (let i = 0; i < Number(maxReps); i++) {
+						let randnum = Math.floor((Math.random() * 100) + 0)
+						let imgurl = json["data"]["children"][randnum]["data"]["url"];
+						let subreddit = json["data"]["children"][randnum]["data"]["subreddit"]
+						let title = json["data"]["children"][randnum]["data"]["title"];
+						let redditlink = json["data"]["children"][randnum]["data"]["permalink"];
+						request(imgurl, function (err, response, body) {
+							let finalurl = response.request.href
+							let reEmbed = new Discord.RichEmbed()
+								.setColor(16711422)
+								.addField(
+									"rm **" + subreddit + "** requested by **" + message.author.tag + " x" + maxReps + "**",
+									"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+								)
+								.setFooter(
+									"⚠️ The <rm command picks a subreddit at random. Try <h if you would like to specify one");
+							message.channel.send({
+								embed: reEmbed
+							});
+							return message.channel.send(finalurl);
+						});
+					}
 				} catch {
 					let reEmbed = new Discord.RichEmbed()
 						.setColor(16711422)
@@ -296,20 +323,26 @@ bot.on("message", async message => {
 		request("https://www.reddit.com/r/" + args + "/top/.json?limit=1" + args, function (error, response, body) {
 			let json = JSON.parse(body);
 			try {
-				let imgurl = json["data"]["children"]["0"]["data"]["url"];
-				let title = json["data"]["children"]["0"]["data"]["title"];
-				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				request(imgurl, function (err, response, body) {
-					let finalurl = response.request.href
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rt **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(finalurl);
-				});
+				if (isNaN(Nargs)) {
+					Nargs = 1
+				}
+				const maxReps = Math.min(Number(Nargs), 10);
+				for (let i = 0; i < Number(maxReps); i++) {
+					let imgurl = json["data"]["children"]["0"]["data"]["url"];
+					let title = json["data"]["children"]["0"]["data"]["title"];
+					let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
+					request(imgurl, function (err, response, body) {
+						let finalurl = response.request.href
+						let reEmbed = new Discord.RichEmbed()
+							.setColor(16711422)
+							.addField(
+								"rt **" + args + "** requested by **" + message.author.tag + " x" + maxReps + "**",
+								"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+							)
+						message.channel.send({embed: reEmbed});
+						return message.channel.send(finalurl);
+					});
+				}
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -336,25 +369,30 @@ bot.on("message", async message => {
 		});
 	}
 
-
 	if (cmd == `${prefix}rh`) {
 		request("https://www.reddit.com/r/" + args + "/hot/.json?limit=1" + args, function (error, response, body) {
 			let json = JSON.parse(body);
 			try {
-				let imgurl = json["data"]["children"]["0"]["data"]["url"];
-				let title = json["data"]["children"]["0"]["data"]["title"];
-				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				request(imgurl, function (err, response, body) {
-					let finalurl = response.request.href
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rh **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(finalurl);
-				});
+				if (isNaN(Nargs)) {
+					Nargs = 1
+				}
+				const maxReps = Math.min(Number(Nargs), 10);
+				for (let i = 0; i < Number(maxReps); i++) {
+					let imgurl = json["data"]["children"]["0"]["data"]["url"];
+					let title = json["data"]["children"]["0"]["data"]["title"];
+					let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
+					request(imgurl, function (err, response, body) {
+						let finalurl = response.request.href
+						let reEmbed = new Discord.RichEmbed()
+							.setColor(16711422)
+							.addField(
+								"rh **" + args + "** requested by **" + message.author.tag + " x" + maxReps + "**",
+								"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+							)
+						message.channel.send({embed: reEmbed});
+						return message.channel.send(finalurl);
+					});
+				}
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -385,20 +423,26 @@ bot.on("message", async message => {
 		request("https://www.reddit.com/r/" + args + "/rising/.json?limit=1" + args, function (error, response, body) {
 			let json = JSON.parse(body);
 			try {
-				let imgurl = json["data"]["children"]["0"]["data"]["url"];
-				let title = json["data"]["children"]["0"]["data"]["title"];
-				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				request(imgurl, function (err, response, body) {
-					let finalurl = response.request.href
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rr **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(finalurl);
-				});
+				if (isNaN(Nargs)) {
+					Nargs = 1
+				}
+				const maxReps = Math.min(Number(Nargs), 10);
+				for (let i = 0; i < Number(maxReps); i++) {
+					let imgurl = json["data"]["children"]["0"]["data"]["url"];
+					let title = json["data"]["children"]["0"]["data"]["title"];
+					let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
+					request(imgurl, function (err, response, body) {
+						let finalurl = response.request.href
+						let reEmbed = new Discord.RichEmbed()
+							.setColor(16711422)
+							.addField(
+								"rr **" + args + "** requested by **" + message.author.tag + " x" + maxReps + "**",
+								"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+							)
+						message.channel.send({embed: reEmbed});
+						return message.channel.send(finalurl);
+					});
+				}
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -429,20 +473,26 @@ bot.on("message", async message => {
 		request("https://www.reddit.com/r/" + args + "/new/.json?limit=1" + args, function (error, response, body) {
 			let json = JSON.parse(body);
 			try {
-				let imgurl = json["data"]["children"]["0"]["data"]["url"];
-				let title = json["data"]["children"]["0"]["data"]["title"];
-				let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
-				request(imgurl, function (err, response, body) {
-					let finalurl = response.request.href
-					let reEmbed = new Discord.RichEmbed()
-						.setColor(16711422)
-						.addField(
-							"rn **" + args + "** requested by **" + message.author.tag + "**",
-							"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
-						)
-					message.channel.send({embed: reEmbed});
-					return message.channel.send(finalurl);
-				});
+				if (isNaN(Nargs)) {
+					Nargs = 1
+				}
+				const maxReps = Math.min(Number(Nargs), 10);
+				for (let i = 0; i < Number(maxReps); i++) {
+					let imgurl = json["data"]["children"]["0"]["data"]["url"];
+					let title = json["data"]["children"]["0"]["data"]["title"];
+					let redditlink = json["data"]["children"]["0"]["data"]["permalink"];
+					request(imgurl, function (err, response, body) {
+						let finalurl = response.request.href
+						let reEmbed = new Discord.RichEmbed()
+							.setColor(16711422)
+							.addField(
+								"rn **" + args + "** requested by **" + message.author.tag + " x" + maxReps + "**",
+								"[" + title + "](" + "https://reddit.com" + redditlink + ")", true
+							)
+						message.channel.send({embed: reEmbed});
+						return message.channel.send(finalurl);
+					});
+				}
 			} catch {
 				if (args === void(0)) {
 					let reEmbed = new Discord.RichEmbed()
@@ -500,9 +550,11 @@ bot.on("message", async message => {
 							)
 						message.channel.send({embed: reEmbed});
 						return message.channel.send(url)
+
 					}
 				};
 			});
+
 		} catch {
 			return message.channel.send("Error getting data from **" + args + "**");
 		};
