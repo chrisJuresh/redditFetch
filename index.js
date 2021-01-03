@@ -30,7 +30,7 @@ bot.on("message", async message => {
 	//message.guild.roles.find(role => role.name === "x").delete();
 	//}
 
-	if (cmd == `${prefix}h`) {
+	if (cmd == `${prefix}h` || cmd == `${prefix}help`) {
 		let sEmbed = new Discord.RichEmbed()
 			.setColor(16711422)
 			.setTitle("Commands")
