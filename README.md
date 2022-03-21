@@ -1,6 +1,6 @@
 # discordBot
 
-![Preview](https://imgur.com/a/6B7omWc)
+<img src="https://i.imgur.com/KUveIPJ.pnge" width="500">
 
 This bot specialises in pulling images from reddit, either randomly or by the top post of a given category. Below is a list of the commands. If you would like to see more detail add the bot to your server and use <hh. If anyone needs help setting up the bot themselves feel free to contact me. Feel free to put forward any improvments to the code or formatting of README
 
